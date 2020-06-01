@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.androidstudy.http.HttpActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -14,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void gotoHttp(View view) {
-        Intent intent = new Intent(MainActivity.this,HttpActivity.class);
+        Intent intent = new Intent(MainActivity.this, HttpActivity.class);
         startActivity(intent);
     }
 }

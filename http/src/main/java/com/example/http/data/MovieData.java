@@ -1,43 +1,101 @@
 package com.example.http.data;
 
 import com.google.gson.Gson;
-import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 import androidx.annotation.NonNull;
 
 public class MovieData {
-    /**
-     * {"bImg":"http://img5.mtime.cn/mg/2018/09/04/124630.14485487.jpg",
-     *     "date":"",
-     *     "hasPromo":false,
-     *     "lid":0,
-     *     "ms":[],
-     *     "newActivitiesTime":0,
-     *     "promo":{},
-     *     "totalComingMovie":0,
-     *     "voucherMsg":""}
-     */
+    private String bImg;
 
-    @SerializedName("bImg")
-    public String bImg;
-    @SerializedName("date")
-    public String date;
-    @SerializedName("hasPromo")
-    public boolean hasPromo;
-    @SerializedName("lid")
-    public int lid;
-    @SerializedName("ms")
-    public List<String> ms;
-    @SerializedName("newActivitiesTime")
-    public int newActivitiesTime;
-    @SerializedName("promo")
-    public Object promo;
-    @SerializedName("totalComingMovie")
-    public int totalComingMovie;
-    @SerializedName("voucherMsg")
-    public String voucherMsg;
+    private String date;
+
+    private boolean hasPromo;
+
+    private int lid;
+
+    private List<Ms> ms;
+
+    private int newActivitiesTime;
+
+    private Promo promo;
+
+    private int totalComingMovie;
+
+    private String voucherMsg;
+
+    public void setBImg(String bImg) {
+        this.bImg = bImg;
+    }
+
+    public String getBImg() {
+        return this.bImg;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getDate() {
+        return this.date;
+    }
+
+    public void setHasPromo(boolean hasPromo) {
+        this.hasPromo = hasPromo;
+    }
+
+    public boolean getHasPromo() {
+        return this.hasPromo;
+    }
+
+    public void setLid(int lid) {
+        this.lid = lid;
+    }
+
+    public int getLid() {
+        return this.lid;
+    }
+
+    public void setMs(List<Ms> ms) {
+        this.ms = ms;
+    }
+
+    public List<Ms> getMs() {
+        return this.ms;
+    }
+
+    public void setNewActivitiesTime(int newActivitiesTime) {
+        this.newActivitiesTime = newActivitiesTime;
+    }
+
+    public int getNewActivitiesTime() {
+        return this.newActivitiesTime;
+    }
+
+    public void setPromo(Promo promo) {
+        this.promo = promo;
+    }
+
+    public Promo getPromo() {
+        return this.promo;
+    }
+
+    public void setTotalComingMovie(int totalComingMovie) {
+        this.totalComingMovie = totalComingMovie;
+    }
+
+    public int getTotalComingMovie() {
+        return this.totalComingMovie;
+    }
+
+    public void setVoucherMsg(String voucherMsg) {
+        this.voucherMsg = voucherMsg;
+    }
+
+    public String getVoucherMsg() {
+        return this.voucherMsg;
+    }
 
     @NonNull
     @Override
