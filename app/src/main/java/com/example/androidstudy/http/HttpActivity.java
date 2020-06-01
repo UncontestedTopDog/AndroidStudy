@@ -24,7 +24,6 @@ import com.example.http.data.MovieData;
 public class HttpActivity extends AppCompatActivity {
 
     private ActivityHttpBinding httpBinding;
-    // private MovieViewModel movieViewModel;
     private MovieViewModelV2 movieViewModel;
 
     @Override
@@ -35,17 +34,11 @@ public class HttpActivity extends AppCompatActivity {
         movieViewModel.movieDataLiveData.observe(this, new Observer<MovieData>() {
             @Override
             public void onChanged(MovieData movieData) {
-                httpBinding.result.setText(movieData.toString());
+                Log.i("AAAAA","!!!!!!!"+movieData.toString());
+                httpBinding.movieView.bindData(movieData.getMs());
             }
         });
 
-        // movieViewModel = new MovieViewModel();
-        // movieViewModel.movieLiveData.observe(this, new Observer<MovieData>() {
-        //     @Override
-        //     public void onChanged(MovieData movieData) {
-        //         httpBinding.result.setText(movieData.toString());
-        //     }
-        // });
         httpBinding.getData.setOnClickListener(v->{
             movieViewModel.loadData();
         });

@@ -1,6 +1,7 @@
 package com.example.http.data;
 
 import com.google.gson.Gson;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
@@ -15,6 +16,7 @@ public class MovieData {
 
     private int lid;
 
+    @SerializedName("ms")
     private List<Ms> ms;
 
     private int newActivitiesTime;

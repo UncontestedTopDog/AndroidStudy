@@ -1,6 +1,10 @@
 package com.example.http.data;
 
+import com.google.gson.Gson;
+
 import java.util.List;
+
+import androidx.annotation.NonNull;
 
 public class Ms {
     private int NearestCinemaCount;
@@ -391,5 +395,11 @@ public class Ms {
 
     public String getYear() {
         return this.year;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return new Gson().toJson(this);
     }
 }

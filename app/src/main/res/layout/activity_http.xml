@@ -30,10 +30,10 @@
             android:text="getData"
             android:textSize="30dp" />
 
-        <TextView
-            android:id="@+id/result"
+        <com.example.androidstudy.http.views.MovieView
+            android:id="@+id/movie_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"/>
 
     </LinearLayout>
 
