@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.example.androidstudy.R;
 import com.example.http.data.Ms;
 import com.example.imageloader.ImageLoader;
@@ -34,8 +35,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Log.i("AAAAA", movieDetails.get(position).getImg());
-        // ImageLoader.load(context, movieDetails.get(position).getImg(), holder.image);
-        holder.image.setImageResource(R.drawable.ic_launcher_background);
+        Glide.with(context)
+                .load(movieDetails.get(position).getImg())
+                .centerCrop()
+                .placeholder(R.drawable.ic_launcher_background)
+                .into(holder.image);
     }
 
     @Override

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="movieViewModel"
             type="com.example.androidstudy.http.viewmodel.MovieViewModel" />
@@ -15,25 +16,25 @@
         android:orientation="vertical"
         tools:context=".http.HttpActivity">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="retrofit"
-            android:textSize="30dp" />
+        <!--        <TextView-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:gravity="center"-->
+        <!--            android:text="retrofit"-->
+        <!--            android:textSize="30dp" />-->
 
-        <Button
-            android:id="@+id/get_data"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:gravity="center"
-            android:text="getData"
-            android:textSize="30dp" />
+        <!--        <Button-->
+        <!--            android:id="@+id/get_data"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="80dp"-->
+        <!--            android:gravity="center"-->
+        <!--            android:text="getData"-->
+        <!--            android:textSize="30dp" />-->
 
-        <com.example.androidstudy.http.views.MovieView
+        <com.example.androidstudy.http.views.MovieList
             android:id="@+id/movie_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 

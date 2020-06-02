@@ -22,7 +22,7 @@ public class MovieManager {
         return instance;
     }
 
-    public Observable<MovieData> getData() {
-       return MovieService.getData();
+    public Observable<MovieData> getData(int location) {
+       return MovieService.getData(location);
     }
 }

@@ -19,8 +19,8 @@ public class MovieViewModelV2 extends AndroidViewModel {
         movieDataLiveData = new MutableLiveData<>();
     }
 
-    public void loadData() {
-        MovieManager.getInstance().getData()
+    public void loadData(int location) {
+        MovieManager.getInstance().getData(location)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<MovieData>() {
