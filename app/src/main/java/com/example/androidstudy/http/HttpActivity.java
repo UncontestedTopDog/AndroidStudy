@@ -1,59 +1,68 @@
 package com.example.androidstudy.http;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
-
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Button;
-import android.widget.TextView;
 
 import com.edu.baserecyclerview.OnLoadMoreListener;
 import com.example.androidstudy.R;
 import com.example.androidstudy.databinding.ActivityHttpBinding;
-import com.example.androidstudy.http.viewmodel.MovieViewModel;
 import com.example.androidstudy.http.viewmodel.MovieViewModelV2;
 import com.example.androidstudy.http.views.IRefresh;
-import com.example.androidstudy.http.views.MovieList;
-import com.example.http.MovieManager;
 import com.example.http.data.MovieData;
 
-public class HttpActivity extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
-    // private ActivityHttpBinding httpBinding;
+public class HttpActivity extends AppCompatActivity implements IRefresh {
+
+    private ActivityHttpBinding httpBinding;
     private MovieViewModelV2 movieViewModel;
-    private MovieList movieList;
+    private int i = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_http2);
-        // httpBinding = DataBindingUtil.setContentView(this,R.layout.activity_http2);
+        httpBinding = DataBindingUtil.setContentView(this, R.layout.activity_http);
         movieViewModel = ViewModelProviders.of(this).get(MovieViewModelV2.class);
-        // httpBinding.movieView.setOnRefresh(this);
-        movieList = findViewById(R.id.movie_list);
-        movieList.addOnScrollListener(new OnLoadMoreListener() {
+        httpBinding.movieView.setOnRefresh(this);
+        httpBinding.movieView.addOnScrollListener(new OnLoadMoreListener() {
             @Override
             protected void onLoading(int countItem, int lastItem) {
-                movieViewModel.loadData(298);
+                i++;
+                movieViewModel.addData(i);
             }
         });
-        movieViewModel.movieDataLiveData.observe(this, new Observer<MovieData>() {
+        movieViewModel.addData.observe(this, new Observer<MovieData>() {
             @Override
             public void onChanged(MovieData movieData) {
-                Log.i("AAAAA","!!!!!!!"+movieData.toString());
-                movieList.bindData(movieData.getMs());
+                if (movieData.getMs().size() != 0) {
+                    httpBinding.movieView.addData(movieData.getMs());
+                    return;
+                }
+                i++;
+                movieViewModel.addData(i);
             }
         });
 
-        // httpBinding.getData.setOnClickListener(v->{
-            movieViewModel.loadData(290);
-        // });
+        movieViewModel.refreshData.observe(this, new Observer<MovieData>() {
+            @Override
+            public void onChanged(MovieData movieData) {
+                if (movieData.getMs().size() != 0) {
+                    httpBinding.movieView.bindData(movieData.getMs());
+                    return;
+                }
+                i++;
+                movieViewModel.addData(i);
+            }
+        });
+
+        movieViewModel.refreshData(i);
+    }
+
+    @Override
+    public void onRefresh() {
+        i = 0;
+        movieViewModel.refreshData(i);
     }
 }

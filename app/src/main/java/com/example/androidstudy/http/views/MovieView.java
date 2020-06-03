@@ -61,6 +61,11 @@ public class MovieView extends RelativeLayout {
         movieList.bindData(movieDetails);
     }
 
+    public void addData(List<Ms> movieDetails) {
+        movieRefresh.setRefreshing(false);
+        movieList.addData(movieDetails);
+    }
+
     public void addOnScrollListener(OnLoadMoreListener listener) {
         movieList.addOnScrollListener(listener);
     }

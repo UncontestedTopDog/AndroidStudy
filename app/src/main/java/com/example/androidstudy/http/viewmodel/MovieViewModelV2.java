@@ -13,20 +13,39 @@ import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 public class MovieViewModelV2 extends AndroidViewModel {
-    public MutableLiveData<MovieData> movieDataLiveData;
+    public MutableLiveData<MovieData> refreshData;
+    public MutableLiveData<MovieData> addData;
     public MovieViewModelV2(@NonNull Application application) {
         super(application);
-        movieDataLiveData = new MutableLiveData<>();
+        refreshData = new MutableLiveData<>();
+        addData = new MutableLiveData<>();
     }
 
-    public void loadData(int location) {
-        MovieManager.getInstance().getData(location)
+    public void refreshData(int location) {
+        MovieManager.getInstance().getData(location+290)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<MovieData>() {
                     @Override
                     public void call(MovieData movieData) {
-                        movieDataLiveData.setValue(movieData);
+                        refreshData.setValue(movieData);
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+
+                    }
+                });
+    }
+
+    public void addData(int location) {
+        MovieManager.getInstance().getData(location+290)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<MovieData>() {
+                    @Override
+                    public void call(MovieData movieData) {
+                        addData.setValue(movieData);
                     }
                 }, new Action1<Throwable>() {
                     @Override

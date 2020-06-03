@@ -2,8 +2,9 @@ package com.example.androidstudy.http.views;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
 
-import com.edu.baserecyclerview.OnLoadMoreListener;
+import com.example.androidstudy.R;
 import com.example.http.data.Ms;
 
 import java.util.List;
@@ -14,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class MovieList extends RecyclerView {
-    private MovieAdapterV2 adapter;
+    private MovieAdapter adapter;
     private Context context;
     public MovieList(@NonNull Context context) {
         this(context, null);
@@ -38,10 +39,30 @@ public class MovieList extends RecyclerView {
 
     public void bindData(List<Ms> movieDetails) {
         if (adapter == null) {
-            adapter = new MovieAdapterV2(context);
+            adapter = new MovieAdapter(context, true,true);
+            View headView = View.inflate(context, R.layout.movie_head_layout, null);
+            MovieHead mh =  new MovieHead(headView);
+            adapter.setHVH(mh);
+            View footView = View.inflate(context, R.layout.movie_foot_layout, null);
+            MovieFoot mf =  new MovieFoot(footView);
+            adapter.setFVH(mf);
+            setAdapter(adapter);
         }
-        setAdapter(adapter);
         adapter.bindData(movieDetails);
+        adapter.notifyDataSetChanged();
+    }
+    public void addData(List<Ms> movieDetails) {
+        if (adapter == null) {
+            adapter = new MovieAdapter(context, true,true);
+            View headView = View.inflate(context, R.layout.movie_head_layout, null);
+            MovieHead mh =  new MovieHead(headView);
+            adapter.setHVH(mh);
+            View footView = View.inflate(context, R.layout.movie_foot_layout, null);
+            MovieFoot mf =  new MovieFoot(footView);
+            adapter.setFVH(mf);
+            setAdapter(adapter);
+        }
+        adapter.addData(movieDetails);
         adapter.notifyDataSetChanged();
     }
 }

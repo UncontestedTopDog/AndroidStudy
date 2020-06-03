@@ -8,7 +8,8 @@
     tools:ignore="MissingDefaultResource">
 
     <TextView
-        android:text="正在加载..."
+        android:id="@+id/footer_view"
+        android:text="正在加载！！！！"
         android:gravity="center_vertical"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"/>
