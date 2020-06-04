@@ -7,7 +7,6 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.edu.baserecyclerview.BaseAdapter;
-import com.edu.baserecyclerview.HeadViewHolder;
 import com.example.androidstudy.R;
 import com.example.http.data.Ms;
 
@@ -20,10 +19,12 @@ public class MovieAdapter extends BaseAdapter<Ms> {
 
     private Context context;
 
-    public MovieAdapter(Context context,
-                        boolean needHeader,
-                        boolean needFooter) {
-        super( needHeader, needFooter);
+    public MovieAdapter(Context context) {
+        this.context = context;
+    }
+
+    public MovieAdapter(Context context, RecyclerView.ViewHolder hvh, RecyclerView.ViewHolder fvh) {
+        super(hvh, fvh);
         this.context = context;
     }
 
@@ -41,11 +42,11 @@ public class MovieAdapter extends BaseAdapter<Ms> {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (getItemViewType(position) == TYPE_HEADER) {
-            MovieHead head = (MovieHead) holder;
-            head.headView.setText("电影的开始");
+            MovieHeaderVH headerVH = (MovieHeaderVH) holder;
+            headerVH.headView.setText("电影的开始");
         } else if (getItemViewType(position) == TYPE_FOOTER) {
-            MovieFoot foot = (MovieFoot) holder;
-            foot.footerView.setText("继续加载更多");
+            // MovieFooterVH footerVH = (MovieFooterVH) holder;
+            // footerVH.footerView.setText("继续加载更多");
         } else {
             ViewHolder viewHolder = (ViewHolder) holder;
             Glide.with(context)

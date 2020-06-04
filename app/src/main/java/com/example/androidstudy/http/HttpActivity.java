@@ -29,8 +29,18 @@ public class HttpActivity extends AppCompatActivity implements IRefresh {
         httpBinding.movieView.addOnScrollListener(new OnLoadMoreListener() {
             @Override
             protected void onLoading(int countItem, int lastItem) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(5*1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        movieViewModel.addData(i);
+                    }
+                }).start();
                 i++;
-                movieViewModel.addData(i);
             }
         });
         movieViewModel.addData.observe(this, new Observer<MovieData>() {

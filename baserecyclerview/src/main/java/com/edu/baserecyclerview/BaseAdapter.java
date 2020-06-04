@@ -1,7 +1,5 @@
 package com.edu.baserecyclerview;
 
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
@@ -17,29 +15,14 @@ public class BaseAdapter<T> extends RecyclerView.Adapter {
     protected final static int TYPE_HEADER = 2;
     protected List<T> listData = new ArrayList<>();
 
-    private HeadViewHolder hvh;
-    private FootViewHolder fvh;
-    private boolean needHeader;
-    private boolean needFooter;
+    private RecyclerView.ViewHolder hvh;
+    private RecyclerView.ViewHolder fvh;
 
-    public BaseAdapter(
-            boolean needHeader,
-            boolean needFooter) {
-        this.needHeader = needHeader;
-        this.needFooter  = needFooter;
+    public BaseAdapter() {
     }
 
-    public void initHFVH(HeadViewHolder hvh,
-                         FootViewHolder fvh) {
+    public BaseAdapter(RecyclerView.ViewHolder hvh, RecyclerView.ViewHolder fvh) {
         this.hvh = hvh;
-        this.fvh = fvh;
-    }
-
-    public void setHVH(HeadViewHolder hvh) {
-        this.hvh = hvh;
-    }
-
-    public void setFVH(FootViewHolder fvh) {
         this.fvh = fvh;
     }
 
@@ -47,18 +30,8 @@ public class BaseAdapter<T> extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == TYPE_HEADER) {
-            if (hvh == null) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.header_layout,
-                        parent, false);
-                return new HeadViewHolder(view);
-            }
             return hvh;
         } else if (viewType == TYPE_FOOTER) {
-            if (fvh == null) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.footer_layout,
-                        parent, false);
-                return new FootViewHolder(view);
-            }
             return fvh;
         }
         return null;
@@ -71,10 +44,10 @@ public class BaseAdapter<T> extends RecyclerView.Adapter {
     @Override
     public int getItemCount() {
         int size = listData.size();
-        if (needHeader) {
+        if (hvh != null) {
             size++;
         }
-        if (needFooter) {
+        if (fvh != null) {
             size++;
         }
         return size;
@@ -82,20 +55,20 @@ public class BaseAdapter<T> extends RecyclerView.Adapter {
 
     @Override
     public int getItemViewType(int position) {
-        if (needHeader && needFooter) {
+        if (hvh != null && fvh != null) {
             if (position == listData.size() + 1) {
                 return TYPE_FOOTER;
             } else if (position == 0) {
                 return TYPE_HEADER;
             }
             return TYPE_CONTENT;
-        } else if (needHeader) {
+        } else if (hvh != null) {
             if (position == 0) {
                 return TYPE_HEADER;
             } else {
                 return TYPE_CONTENT;
             }
-        } else if (needFooter) {
+        } else if (fvh != null) {
             if (position == listData.size()) {
                 return TYPE_FOOTER;
             }

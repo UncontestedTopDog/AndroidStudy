@@ -148,5 +148,8 @@
     <orderEntry type="module" module-name="http" />
     <orderEntry type="module" module-name="imageloader" />
     <orderEntry type="module" module-name="baserecyclerview" />
+    <orderEntry type="module" module-name="http" />
+    <orderEntry type="module" module-name="imageloader" />
+    <orderEntry type="module" module-name="baserecyclerview" />
   </component>
 </module>

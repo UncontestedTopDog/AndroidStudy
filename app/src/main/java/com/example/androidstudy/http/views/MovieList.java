@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.edu.baserecyclerview.DefaultVHBuilder;
 import com.example.androidstudy.R;
 import com.example.http.data.Ms;
 
@@ -39,13 +40,11 @@ public class MovieList extends RecyclerView {
 
     public void bindData(List<Ms> movieDetails) {
         if (adapter == null) {
-            adapter = new MovieAdapter(context, true,true);
             View headView = View.inflate(context, R.layout.movie_head_layout, null);
-            MovieHead mh =  new MovieHead(headView);
-            adapter.setHVH(mh);
+            MovieHeaderVH headVH =  new MovieHeaderVH(headView);
             View footView = View.inflate(context, R.layout.movie_foot_layout, null);
-            MovieFoot mf =  new MovieFoot(footView);
-            adapter.setFVH(mf);
+            MovieFooterVH footVH =  new MovieFooterVH(footView);
+            adapter = new MovieAdapter(context,headVH, DefaultVHBuilder.buildFooter(context));
             setAdapter(adapter);
         }
         adapter.bindData(movieDetails);
@@ -53,13 +52,11 @@ public class MovieList extends RecyclerView {
     }
     public void addData(List<Ms> movieDetails) {
         if (adapter == null) {
-            adapter = new MovieAdapter(context, true,true);
             View headView = View.inflate(context, R.layout.movie_head_layout, null);
-            MovieHead mh =  new MovieHead(headView);
-            adapter.setHVH(mh);
+            MovieHeaderVH headVH =  new MovieHeaderVH(headView);
             View footView = View.inflate(context, R.layout.movie_foot_layout, null);
-            MovieFoot mf =  new MovieFoot(footView);
-            adapter.setFVH(mf);
+            MovieFooterVH footVH =  new MovieFooterVH(footView);
+            adapter = new MovieAdapter(context,headVH,footVH);
             setAdapter(adapter);
         }
         adapter.addData(movieDetails);
