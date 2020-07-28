@@ -10,6 +10,12 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [ AROUTER_MODULE_NAME  : project.getName() ]
+            }
+        }
     }
     buildTypes {
         release {
@@ -18,8 +24,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = 1.8
-        targetCompatibility = 1.8
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     dataBinding {
@@ -35,7 +41,6 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     api project(path: ':http')
-    implementation lib_rxandroid
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     compile project(path: ':imageloader')
@@ -44,7 +49,27 @@ dependencies {
 
     implementation "com.android.support:support-annotations:28.0.0"
     annotationProcessor "com.android.support:support-annotations:28.0.0"
-    compile project(path: ':baserecyclerview')
+    implementation project(path: ':baserecyclerview')
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
+    implementation project(path: ':thread')
+    implementation project(path: ':view')
+    implementation 'androidx.fragment:fragment:latest-version'
+    implementation 'androidx.fragment:fragment-ktx:1.2.5'
+
+    implementation lib_gson
+    implementation lib_rxjava
+    implementation lib_retrofit
+    implementation lib_retrofit_gson
+    implementation lib_retrofit_rxjava
+    implementation lib_rxandroid
+
+
+    implementation 'com.alibaba:arouter-api:1.5.0'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
+
+    implementation "com.google.android.material:material:1.0.0"
+
+    implementation project(path: ':mvvm')
+
 
 }

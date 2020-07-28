@@ -1,1 +1,4 @@
-include ':app', ':http', ':imageloader', ':baserecyclerview'
+include ':mvvm'
+include ':app', ':http', ':imageloader', ':baserecyclerview', ':view',
+        ':lib',
+        ':thread'
