@@ -1,5 +1,7 @@
 package com.example.androidstudy.mvvm.viewmodel;
 
+import android.util.Log;
+
 import com.example.androidstudy.mvvm.repository.MovieRepository;
 import com.example.http.data.MovieData;
 
@@ -23,6 +25,7 @@ public class MovieViewModel extends ViewModel {
                 .subscribe(new Action1<MovieData>() {
                     @Override
                     public void call(MovieData movieData) {
+                        Log.i("ASDSASDADADA",movieData.toString());
                         movieDataLiveData.setValue(movieData);
                     }
                 }, new Action1<Throwable>() {

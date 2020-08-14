@@ -6,7 +6,7 @@
 
     <TextView
         android:id="@+id/head_view"
-        android:text="这是第一条!!!!!!!!!!!"
+        android:text="@string/first_item"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="50dp"/>
